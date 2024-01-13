@@ -30,7 +30,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/primeng/resources/themes/lara-dark-teal/theme.css",
+              "./node_modules/primeng/resources/primeng.css"
             ],
             "scripts": []
           },
@@ -90,7 +92,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/primeng/resources/themes/lara-dark-teal/theme.css",
+              "./node_modules/primeng/resources/primeng.css"
             ],
             "scripts": []
           }
