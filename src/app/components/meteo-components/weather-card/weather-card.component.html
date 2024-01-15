@@ -1,0 +1,14 @@
+<div class="w-full flex flex-col items-center bg-gray-700 rounded-xl p-4 text-white">
+  <!-- Location Information -->
+  <div *ngIf="meteo.currentUserGeoInfo$ | async as userLocation" class="text-center mb-4">
+    <h3 class="text-xl font-bold">{{ userLocation.city }}, {{ userLocation.country }}</h3>
+    <p>{{ userLocation.continent }}</p>
+  </div>
+
+  <!-- Current Weather Details -->
+  <div *ngIf="currentWeather" class="text-center mb-4">
+    <p>Temperature: {{ currentWeather.current.temperature_2m }}°{{ currentWeather.current_units.temperature_2m }}</p>
+    <p>Humidity: {{ currentWeather.current.relative_humidity_2m }}{{ currentWeather.current_units.relative_humidity_2m }}</p>
+    <p>Wind: {{ currentWeather.current.wind_speed_10m }}{{ currentWeather.current_units.wind_speed_10m }}</p>
+  </div>
+</div>

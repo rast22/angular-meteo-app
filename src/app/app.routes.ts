@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
+import {BaseComponent} from "./components/base/base.component";
 
 export const routes: Routes = [
-  { path: '',loadChildren: () => import('./meteo/meteo.module').then(m => m.MeteoModule) },
+  { path: '',component: BaseComponent },
 ];
