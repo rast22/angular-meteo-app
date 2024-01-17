@@ -36,7 +36,6 @@ export class HistoryWeatherDashboardComponent {
   fetchWeatherData() {
     this.meteoService.weatherHistory$.subscribe({
       next: (data) => {
-        console.log(data)
         if (!data) return;
         this.currentMeteo = data;
         this.initializeChartOptions();

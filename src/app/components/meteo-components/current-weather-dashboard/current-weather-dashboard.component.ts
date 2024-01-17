@@ -39,7 +39,6 @@ export class CurrentWeatherDashboardComponent implements  OnInit {
   fetchWeatherData() {
     this.meteoService.currentWeather$.subscribe({
       next: (data) => {
-        console.log(data)
         if (!data) return;
         this.currentMeteo = data;
         this.initializeChartOptions();

@@ -4,7 +4,7 @@
   </div>
   <p-dropdown [options]="cityList"
               class=""
-              [(ngModel)]="selectedPlace"
+              [(ngModel)]="inputValue"
               styleClass="pl-4 py-2 w-full"
               optionLabel="name"
               [filter]="false"
@@ -13,6 +13,7 @@
               [editable]="true"
               placeholder="Search city..."
               (onChange)="onSearchChange($event.value)"
+              (onClear)="onSearchChange('')"
               [dropdownIcon]="isLoading ? 'pi pi-spinner pi-spin' : 'pi pi-chevron-down'"
   >
     <ng-template pTemplate="selectedItem">

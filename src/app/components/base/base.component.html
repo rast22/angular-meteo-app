@@ -1,9 +1,13 @@
-<div class="w-full flex flex-row px-8">
-  <div class="w-1/3 mx-2 h-full">
-    <app-weather-card class="w-1/3 mx-2"></app-weather-card>
+<div class="w-full flex flex-row pt-4">
+  <div class="w-1/3 h-full pl-4">
+    <app-weather-card></app-weather-card>
   </div>
-  <div class="w-2/3 mx-2">
-    <app-current-weather-dashboard class="w-2/3 mx-2" ></app-current-weather-dashboard>
-    <app-history-weather-dashboard class="w-2/3 mx-2"></app-history-weather-dashboard>
+  <div class="w-2/3 px-4">
+    <div class="mb-4">
+      <app-current-weather-dashboard  ></app-current-weather-dashboard>
+    </div>
+    <div >
+      <app-history-weather-dashboard ></app-history-weather-dashboard>
+    </div>
   </div>
 </div>
