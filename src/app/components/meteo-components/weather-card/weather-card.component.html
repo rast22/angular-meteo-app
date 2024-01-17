@@ -4,17 +4,18 @@
     <div class="flex flex-col items-center justify-between mb-4">
       <!-- Location Information: Now centered because of the spacer -->
       <app-weather-visual-banner [currentMeteo]="(meteo.currentWeather$ | async)?.current"></app-weather-visual-banner>
-      <div class="text-center">
-        <h3 class="text-xl font-bold">{{ userLocation.city }}, {{ userLocation.country }}</h3>
+      <div class="text-center mb-4">
+        <h3 class="text-3xl font-bold">{{ userLocation.city }}, {{ userLocation.country }}</h3>
         <p>{{ userLocation.continent }}</p>
       </div>
     </div>
     <!-- Current Weather Details -->
-    <div *ngIf="meteo.currentWeather$ | async as currentWeather " class="text-center mb-8">
-      <p>Temperature: {{ currentWeather.current.temperature_2m }}{{ currentWeather.current_units.temperature_2m }}</p>
-      <p>Humidity: {{ currentWeather.current.relative_humidity_2m }}{{ currentWeather.current_units.relative_humidity_2m }}</p>
-      <p>Wind: {{ currentWeather.current.wind_speed_10m }}{{ currentWeather.current_units.wind_speed_10m }}</p>
+    <div *ngIf="meteo.currentWeather$ | async as currentWeather" class="text-center mb-8">
+      <p class="text-lg font-semibold mb-2">Temperature: <span class="text-xl font-bold">{{ currentWeather.current.temperature_2m }}{{ currentWeather.current_units.temperature_2m }}</span></p>
+      <p class="text-lg font-semibold mb-2">Humidity: <span class="text-xl font-bold">{{ currentWeather.current.relative_humidity_2m }}{{ currentWeather.current_units.relative_humidity_2m }}</span></p>
+      <p class="text-lg font-semibold mb-2">Wind: <span class="text-xl font-bold">{{ currentWeather.current.wind_speed_10m }}{{ currentWeather.current_units.wind_speed_10m }}</span></p>
     </div>
+
     <div>
       <app-custom-city-select title="Want to see weather of the other places?"></app-custom-city-select>
     </div>
