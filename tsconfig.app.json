@@ -3,10 +3,16 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
+    "paths": {
+      "*primeng/chart": ["./node_modules/primeng/chart"]
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "types": []
   },
   "files": [
-    "src/main.ts"
+    "src/main.ts",
+    "src/polyfills.ts"
   ],
   "include": [
     "src/**/*.d.ts"

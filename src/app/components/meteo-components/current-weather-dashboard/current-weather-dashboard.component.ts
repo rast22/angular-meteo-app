@@ -4,7 +4,6 @@ import {TableModule} from "primeng/table";
 import {CardModule} from "primeng/card";
 import {MeteoService} from "../../../services/meteo.service";
 import {IDailyUnits, IMeteo} from "../../../types/meteo.type";
-import {comment} from "postcss";
 import {NgIf} from "@angular/common";
 import dayjs from 'dayjs';
 import 'dayjs/locale/si';

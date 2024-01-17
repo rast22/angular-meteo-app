@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  angular-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        name: angular-meteo-app
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/ng-app/src
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

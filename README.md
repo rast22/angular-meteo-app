@@ -1,27 +1,51 @@
-# AngularMeteoApp
+# Angular Meteo App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
+This Angular application visualizes weather data, offering both historical and forecasted weather information. It utilizes REST services provided by OpenMeteo and integrates a free theme using component library PrimeNG.
 
-## Development server
+## Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+To get the application running, ensure you have the following installed:
 
-## Code scaffolding
+* [Node.js](https://nodejs.org/) (with npm)
+* [Docker](https://www.docker.com/) (for Docker Compose method)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
 
-## Build
+Clone the repository and navigate into the project directory:
+## Running
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+### Using npm
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* `npm install`
+*  `ng serve` or `npm run start`
+* Visit your app at [http://localhost:4200](http://localhost:4200).
 
-## Running end-to-end tests
+### Using Docker Compose
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+* Ensure Docker is running on your machine.
+* `docker-compose up` (builds and starts the container)
+* Visit your app at [http://127.0.0.1/](http://localhost:4200).
 
-## Further help
+### Features
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+*   **User Interface**: Utilizes PrimeNG for an enhanced user experience.
+*   **Weather Charts**: Displays weather data on suitable charts.
+*   **City Search**: Allows users to search for weather data for different cities.
+*   **User Location**: Provides weather data based on the user's current location.
+*   **Weather Condition Images**: Displays images representing current weather conditions.
+
+## Development Progress
+
+*   **Application Setup** - ![100%](https://progress-bar.dev/100)
+    *   [x]  Angular application initialized with the latest version.
+    *   [x]  Integration with OpenMeteo APIs for weather data.
+
+*   **UI Integration** - ![100%](https://progress-bar.dev/100)
+    *   [x]  Integration of a free theme using PrimeNG.
+
+*   **Weather Data Visualization** - ![100%](https://progress-bar.dev/100)
+    *   [x]  Implement features to visualize historical and forecast weather data.
+
+*   **Error Handling and User Experience** - ![100%](https://progress-bar.dev/100)
+      *   [x]  Robust error handling and enhanced user experience.

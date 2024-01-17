@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {CardModule} from "primeng/card";
 import {MeteoService} from "../../../services/meteo.service";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
-import {IMeteo} from "../../../types/meteo.type";
 import {CustomCitySelectComponent} from "../custom-city-select/custom-city-select.component";
 import {WeatherVisualBannerComponent} from "../weather-visual-banner/weather-visual-banner.component";
 import {SkeletonModule} from "primeng/skeleton";
