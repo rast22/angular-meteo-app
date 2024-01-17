@@ -1,0 +1,29 @@
+<div class="w-full">
+  <div class="mb-4" *ngIf="title">
+    <p>{{title}}</p>
+  </div>
+  <p-dropdown [options]="cityList"
+              class=""
+              [(ngModel)]="selectedPlace"
+              styleClass="pl-4 py-2 w-full"
+              optionLabel="name"
+              [filter]="false"
+              filterBy="name"
+              [showClear]="true"
+              [editable]="true"
+              placeholder="Search city..."
+              (onChange)="onSearchChange($event.value)"
+              [dropdownIcon]="isLoading ? 'pi pi-spinner pi-spin' : 'pi pi-chevron-down'"
+  >
+    <ng-template pTemplate="selectedItem">
+      <div class="flex align-items-center gap-2 px-4 py-2" *ngIf="selectedPlace">
+        <div>{{ selectedPlace.name }}</div>
+      </div>
+    </ng-template>
+    <ng-template let-city pTemplate="item">
+      <div (click)="onSelectCity(city)" class="flex align-items-center gap-2">
+        <div>{{ city.name }} </div>
+      </div>
+    </ng-template>
+  </p-dropdown>
+</div>

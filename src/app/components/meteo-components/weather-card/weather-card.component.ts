@@ -3,6 +3,10 @@ import {CardModule} from "primeng/card";
 import {MeteoService} from "../../../services/meteo.service";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {IMeteo} from "../../../types/meteo.type";
+import {CustomCitySelectComponent} from "../custom-city-select/custom-city-select.component";
+import {WeatherVisualBannerComponent} from "../weather-visual-banner/weather-visual-banner.component";
+import {SkeletonModule} from "primeng/skeleton";
+import {LoaderComponent} from "../../loader/loader.component";
 
 @Component({
   selector: 'app-weather-card',
@@ -11,25 +15,25 @@ import {IMeteo} from "../../../types/meteo.type";
     CardModule,
     AsyncPipe,
     NgIf,
-    NgForOf
+    NgForOf,
+    CustomCitySelectComponent,
+    WeatherVisualBannerComponent,
+    SkeletonModule,
+    LoaderComponent
   ],
   templateUrl: './weather-card.component.html',
   styleUrl: './weather-card.component.scss'
 })
 export class WeatherCardComponent {
-  currentWeather: IMeteo | undefined;
+  // currentWeather: IMeteo | undefined;
   constructor(public meteo: MeteoService) {
-    this.meteo.currentUserGeoInfo$.subscribe({
-      next: (data) => {
-        console.log(data)
-        if (!data) return;
-        this.meteo.getCurrentWeather().subscribe((data: IMeteo | null) => {
-          console.log(data)
-          if (!data) return;
-          this.currentWeather = data
-        })
-      }
-    })
+    // this.meteo.currentWeather$.subscribe({
+    //   next: (data) => {
+    //     console.log(data)
+    //     if (!data) return;
+    //     this.currentWeather = data
+    //   }
+    // })
   }
 
 }

@@ -59,7 +59,7 @@ interface IDailyMeteo {
   sunrise: Array<string>;
   sunset: Array<string>;
   sunshine_duration: Array<number>;
-  time: Array<string>;
+  time: Array<number>;
   weather_code: Array<number>;
   temperature_2m_max: Array<number>;
   precipitation_sum: Array<number>;
@@ -73,10 +73,16 @@ interface IDailyUnits {
   sunshine_duration: string;
   time: string;
   weather_code: string;
+  wind_speed_10m_max: string;
+  precipitation_sum: string;
+  temperature_2m_max: string;
 }
 
 interface IHourlyMeteo {
   temperature_2m: Array<number>;
+  apparent_temperature: Array<number>;
+  relative_humidity_2m: Array<number>;
+  wind_speed_10m: Array<number>;
   time: Array<string>;
 }
 
@@ -86,19 +92,32 @@ interface IHourlyUnits {
 }
 
 interface IGeoInfo {
-  status: string;
-  continent: string;
-  country: string;
-  countryCode: string;
-  regionName: string;
+  status?: string;
+  continent?: string;
+  country?: string;
+  countryCode?: string;
+  regionName?: string;
   city: string;
-  zip: string;
+  zip?: string;
   lat: number;
   lon: number;
-  timezone: string;
-  query: string;
+  timezone?: string;
+  query?: string;
+}
+
+interface ICitySearchResult {
+  generationtime_ms: number;
+  results: Array<ICitySearchResultItem>;
+}
+
+interface ICitySearchResultItem {
+  country: string;
+  country_code: string;
+  latitude: number;
+  longitude: number;
+  name: string;
 }
 
 
 
-export {IMeteo, ICurrentMeteo, ICurrentUnits, IDailyMeteo, IDailyUnits, IHourlyMeteo, IHourlyUnits, IGeoInfo};
+export {IMeteo, ICurrentMeteo, ICurrentUnits, IDailyMeteo, IDailyUnits, IHourlyMeteo, IHourlyUnits, IGeoInfo, ICitySearchResult, ICitySearchResultItem};

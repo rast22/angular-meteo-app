@@ -1,18 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 import {ChartModule} from "primeng/chart";
+import {IDailyUnits, IMeteo} from "../../../types/meteo.type";
+import {MeteoService} from "../../../services/meteo.service";
+import dayjs from "dayjs";
 import {TableModule} from "primeng/table";
 import {CardModule} from "primeng/card";
-import {MeteoService} from "../../../services/meteo.service";
-import {IDailyUnits, IMeteo} from "../../../types/meteo.type";
-import {comment} from "postcss";
 import {NgIf} from "@angular/common";
-import dayjs from 'dayjs';
-import 'dayjs/locale/si';
 import {SkeletonModule} from "primeng/skeleton";
 
-dayjs.locale('en');
 @Component({
-  selector: 'app-current-weather-dashboard',
+  selector: 'app-history-weather-dashboard',
   standalone: true,
   imports: [
     ChartModule,
@@ -21,10 +18,10 @@ dayjs.locale('en');
     NgIf,
     SkeletonModule,
   ],
-  templateUrl: './current-weather-dashboard.component.html',
-  styleUrl: './current-weather-dashboard.component.scss'
+  templateUrl: './history-weather-dashboard.component.html',
+  styleUrl: './history-weather-dashboard.component.scss'
 })
-export class CurrentWeatherDashboardComponent implements  OnInit {
+export class HistoryWeatherDashboardComponent {
   currentMeteo!: IMeteo;
   isLoading: boolean = true;
   commonOptions: any;
@@ -37,7 +34,7 @@ export class CurrentWeatherDashboardComponent implements  OnInit {
   }
 
   fetchWeatherData() {
-    this.meteoService.currentWeather$.subscribe({
+    this.meteoService.weatherHistory$.subscribe({
       next: (data) => {
         console.log(data)
         if (!data) return;

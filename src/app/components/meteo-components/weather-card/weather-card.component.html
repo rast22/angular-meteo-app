@@ -1,14 +1,27 @@
-<div class="w-full flex flex-col items-center bg-gray-700 rounded-xl p-4 text-white">
+<div class="w-full flex flex-col items-center bg-gray-700 rounded-xl px-4 py-8 text-white">
   <!-- Location Information -->
-  <div *ngIf="meteo.currentUserGeoInfo$ | async as userLocation" class="text-center mb-4">
-    <h3 class="text-xl font-bold">{{ userLocation.city }}, {{ userLocation.country }}</h3>
-    <p>{{ userLocation.continent }}</p>
-  </div>
-
-  <!-- Current Weather Details -->
-  <div *ngIf="currentWeather" class="text-center mb-4">
-    <p>Temperature: {{ currentWeather.current.temperature_2m }}°{{ currentWeather.current_units.temperature_2m }}</p>
-    <p>Humidity: {{ currentWeather.current.relative_humidity_2m }}{{ currentWeather.current_units.relative_humidity_2m }}</p>
-    <p>Wind: {{ currentWeather.current.wind_speed_10m }}{{ currentWeather.current_units.wind_speed_10m }}</p>
-  </div>
+  <ng-container *ngIf="meteo.currentUserGeoInfo$ | async as userLocation" >
+    <div class="flex flex-col items-center justify-between mb-4">
+      <!-- Location Information: Now centered because of the spacer -->
+      <app-weather-visual-banner [currentMeteo]="(meteo.currentWeather$ | async)?.current"></app-weather-visual-banner>
+      <div class="text-center">
+        <h3 class="text-xl font-bold">{{ userLocation.city }}, {{ userLocation.country }}</h3>
+        <p>{{ userLocation.continent }}</p>
+      </div>
+    </div>
+    <!-- Current Weather Details -->
+    <div *ngIf="meteo.currentWeather$ | async as currentWeather " class="text-center mb-8">
+      <p>Temperature: {{ currentWeather.current.temperature_2m }}{{ currentWeather.current_units.temperature_2m }}</p>
+      <p>Humidity: {{ currentWeather.current.relative_humidity_2m }}{{ currentWeather.current_units.relative_humidity_2m }}</p>
+      <p>Wind: {{ currentWeather.current.wind_speed_10m }}{{ currentWeather.current_units.wind_speed_10m }}</p>
+    </div>
+    <div>
+      <app-custom-city-select title="Want to see weather of the other places?"></app-custom-city-select>
+    </div>
+  </ng-container>
+  <!-- Loading Spinner -->
+  <ng-container *ngIf="!(meteo.currentUserGeoInfo$ | async)">
+      <app-loader class="p-8"></app-loader>
+  </ng-container>
 </div>
+
