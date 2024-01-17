@@ -19,7 +19,7 @@ export class WeatherVisualBannerComponent implements OnChanges {
     0: { day: 'day.svg', night: 'night.svg' }, // Clear Sky
     1: { day: 'cloudy-day-1.svg', night: 'cloudy-night-1.svg' }, // Mainly Clear
     2: { day: 'cloudy-day-2.svg', night: 'cloudy-night-2.svg' }, // Partly Cloudy
-    3: { day: 'cloudy-day-3t.svg', night: 'cloudy-night-3.svg' }, // Overcast
+    3: { day: 'cloudy-day-3.svg', night: 'cloudy-night-3.svg' }, // Overcast
     45: { day: 'cloudy.svg', night: 'cloudy.svg' }, // Fog
     48: { day: 'cloudy.svg', night: 'cloudy.svg' }, // Depositing Rime Fog
     51: { day: 'rainy-2.svg', night: 'rainy-5.svg' }, // Light Drizzle
