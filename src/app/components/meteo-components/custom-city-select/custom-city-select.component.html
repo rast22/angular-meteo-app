@@ -23,7 +23,11 @@
     </ng-template>
     <ng-template let-city pTemplate="item">
       <div (click)="onSelectCity(city)" class="flex align-items-center gap-2">
-        <div>{{ city.name }} </div>
+        <div>{{ city.name }}
+          @if (city?.country) {
+           , {{city.country}}
+          }
+        </div>
       </div>
     </ng-template>
   </p-dropdown>

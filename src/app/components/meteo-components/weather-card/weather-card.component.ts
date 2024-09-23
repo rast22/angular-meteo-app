@@ -24,15 +24,5 @@ import {LoaderComponent} from "../../loader/loader.component";
   styleUrl: './weather-card.component.scss'
 })
 export class WeatherCardComponent {
-  // currentWeather: IMeteo | undefined;
-  constructor(public meteo: MeteoService) {
-    // this.meteo.currentWeather$.subscribe({
-    //   next: (data) => {
-    //     console.log(data)
-    //     if (!data) return;
-    //     this.currentWeather = data
-    //   }
-    // })
-  }
-
+  constructor(public meteo: MeteoService) {}
 }

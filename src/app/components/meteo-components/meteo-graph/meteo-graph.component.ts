@@ -1,29 +1,26 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ChartModule} from "primeng/chart";
-import {TableModule} from "primeng/table";
-import {CardModule} from "primeng/card";
-import {MeteoService} from "../../../services/meteo.service";
-import {IDailyUnits, IMeteo} from "../../../types/meteo.type";
 import {NgIf} from "@angular/common";
-import dayjs from 'dayjs';
-import 'dayjs/locale/si';
 import {SkeletonModule} from "primeng/skeleton";
+import {IDailyUnits, IMeteo} from "../../../types/meteo.type";
+import {MeteoService} from "../../../services/meteo.service";
+import dayjs from "dayjs";
 
-dayjs.locale('en');
 @Component({
-  selector: 'app-current-weather-dashboard',
+  selector: 'app-meteo-graph',
   standalone: true,
-  imports: [
-    ChartModule,
-    TableModule,
-    CardModule,
-    NgIf,
-    SkeletonModule,
-  ],
-  templateUrl: './current-weather-dashboard.component.html',
-  styleUrl: './current-weather-dashboard.component.scss'
+    imports: [
+        ChartModule,
+        NgIf,
+        SkeletonModule
+    ],
+  templateUrl: './meteo-graph.component.html',
+  styleUrl: './meteo-graph.component.scss'
 })
-export class CurrentWeatherDashboardComponent implements  OnInit {
+export class MeteoGraphComponent {
+  @Input() title: string = '';
+  @Input() subtitle: string = '';
+  @Input() mode: 'current' | 'history' = 'current';
   currentMeteo!: IMeteo;
   isLoading: boolean = true;
   commonOptions: any;
@@ -36,16 +33,29 @@ export class CurrentWeatherDashboardComponent implements  OnInit {
   }
 
   fetchWeatherData() {
-    this.meteoService.currentWeather$.subscribe({
-      next: (data) => {
-        if (!data) return;
-        this.currentMeteo = data;
-        this.initializeChartOptions();
+    if (this.mode === 'current') {
+      this.meteoService.currentWeather$.subscribe({
+        next: (data) => {
+          if (!data) return;
+          this.currentMeteo = data;
+          this.initializeChartOptions();
 
-        this.prepareChartData();
-        this.isLoading = false;
-      }
-    })
+          this.prepareChartData();
+          this.isLoading = false;
+        }
+      })
+    } else {
+      this.meteoService.weatherHistory$.subscribe({
+        next: (data) => {
+          if (!data) return;
+          this.currentMeteo = data;
+          this.initializeChartOptions();
+
+          this.prepareChartData();
+          this.isLoading = false;
+        }
+      })
+    }
   }
 
   prepareChartData() {

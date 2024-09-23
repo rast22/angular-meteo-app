@@ -83,7 +83,7 @@ export class CustomCitySelectComponent implements OnDestroy {
     this.inputValue = '';
     this.selectedPlace = null;
     this.cityList = [];
-    this.cdr.markForCheck()
+    this.cdr.markForCheck();
   }
 
   ngOnDestroy(): void {

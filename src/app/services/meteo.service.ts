@@ -28,7 +28,10 @@ export class MeteoService {
   getCurrentWeather(): void {
     const weatherUrl = `${environment.weatherForecastApiUrl}?latitude=${this.currentUserGeoInfoSource.getValue()?.lat}&longitude=${this.currentUserGeoInfoSource.getValue()?.lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max,uv_index_clear_sky_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&timeformat=unixtime&timezone=auto`;
     this.http.get<IMeteo>(weatherUrl).subscribe({
-      next: (res) => this.handleWeatherResponse(res, 'current'),
+      next: (res) => {
+        this.handleWeatherResponse(res, 'current')
+        this.toastService.add({severity: 'success', summary: 'Success', detail: 'Weather forecast fetched successfully'});
+      },
       error: (err) => this.handleError(err, 'Current weather data fetch failed')
     });
   }
@@ -42,7 +45,11 @@ export class MeteoService {
     const historyUrl = `${environment.weatherHistoryApiUrl}?latitude=${this.currentUserGeoInfoSource.getValue()?.lat}&longitude=${this.currentUserGeoInfoSource.getValue()?.lon}&start_date=${startDate}&end_date=${endDate}&hourly=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min,temperature_2m_mean,apparent_temperature_max,apparent_temperature_min,apparent_temperature_mean,sunrise,sunset,daylight_duration,sunshine_duration,precipitation_sum,rain_sum,snowfall_sum,precipitation_hours,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&timeformat=unixtime&timezone=auto`
 
     this.http.get<IMeteo>(historyUrl).subscribe({
-      next: (res) => this.handleWeatherResponse(res, 'history'),
+      next: (res) => {
+        this.handleWeatherResponse(res, 'history')
+        this.toastService.add({severity: 'success', summary: 'Success', detail: 'Weather history fetched successfully'});
+
+      },
       error: (err) => this.handleError(err, 'Weather history fetch failed')
     });
   }
@@ -52,7 +59,7 @@ export class MeteoService {
    */
   getGeoInfo(): void {
     const geoInfoUrl = environment.geoInfoApiUrl
-    console.log(geoInfoUrl)
+
     this.http.get<IGeoInfo>(geoInfoUrl).subscribe({
       next: (res) => this.handleGeoInfoResponse(res),
       error: (err) => this.handleError(err, 'Geo data (external) fetch failed. You may face incorrect location names and data. Please refresh the page.')
@@ -99,7 +106,6 @@ export class MeteoService {
     if (!res) return;
     const source = type === 'current' ? this.currentWeatherSource : this.weatherHistorySource;
     source.next(res);
-    this.toastService.add({severity: 'success', summary: 'Success', detail: 'Weather data fetched successfully'});
   }
 
   /**
